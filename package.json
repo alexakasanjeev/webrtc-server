@@ -1,0 +1,14 @@
+{
+  "name": "webrtc-server",
+  "version": "0.0.1",
+  "description": "websocket server to be used as a webrtc signalling server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sanjeev Yadav",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.1.1"
+  }
+}
