@@ -9,7 +9,8 @@ const {
 } = require('./actions');
 const log = require('./log');
 
-const wss = new WebSocketServer({ port: 9090 });
+const PORT = process.env.PORT || 3000;
+const wss = new WebSocketServer({ port: PORT });
 
 const clients = {};
 
