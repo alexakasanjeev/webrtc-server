@@ -1,4 +1,8 @@
-const WebSocketServer = require('ws').Server;
+'use strict';
+
+const express = require('express');
+const SocketServer = require('ws').Server;
+const path = require('path');
 const {
   LOGIN_ACTION,
   NEW_USER_ACTION,
@@ -10,7 +14,15 @@ const {
 const log = require('./log');
 
 const PORT = process.env.PORT || 3000;
-const wss = new WebSocketServer({ port: PORT });
+const INDEX = path.join(__dirname, 'index.html');
+
+// Http Server
+const server = express()
+  .use((req, res) => res.sendFile(INDEX))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+// Socket Server
+const wss = new SocketServer({ server});
 
 const clients = {};
 
@@ -31,6 +43,7 @@ wss.on('listening', function () {
   log("Server started...");
 });
 
+// TODO: Cleanup the code
 wss.on('connection', function (connection) {
   // New connection has been extablished
   log("New User connected");
